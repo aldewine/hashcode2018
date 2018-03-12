@@ -1,5 +1,6 @@
 package com.hashcode;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class RideHandler {
@@ -18,9 +19,10 @@ public class RideHandler {
     }
 
     public static void removeRide(int id){
-        for(int i = 0; i < rideList.size();i++){
-            if(rideList.get(i).getId() == id) {
-                rideList.remove(i);
+        for(Iterator<Ride> iterator = rideList.iterator(); iterator.hasNext();){
+            Ride ride = (Ride) iterator.next();
+            if(ride.getId() == id) {
+                iterator.remove();
             }
         }
     }

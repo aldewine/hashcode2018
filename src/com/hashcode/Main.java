@@ -3,11 +3,10 @@ package com.hashcode;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -58,11 +57,12 @@ public class Main {
 
         List<Vehicle> finishedVehicles = new ArrayList<Vehicle>();
         while(vehicles.size() > 0){
-            for(int j = 0; j < vehicles.size(); j++){
-                vehicles.get(j).checkRidesForTaking(maxTime);
-                if(vehicles.get(j).getTimeLoc() == maxTime){
-                    finishedVehicles.add(vehicles.get(j));
-                    vehicles.remove(j);
+            for(Iterator<Vehicle> iterator = vehicles.iterator(); iterator.hasNext();){
+                Vehicle vehicle = (Vehicle)iterator.next();
+                vehicle.checkRidesForTaking(maxTime);
+                if(vehicle.getTimeLoc() == maxTime){
+                    finishedVehicles.add(vehicle);
+                    iterator.remove();
                 }
             }
         }
